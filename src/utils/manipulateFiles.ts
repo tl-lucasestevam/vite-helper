@@ -8,10 +8,7 @@ interface ITsConfig {
   };
 }
 
-export const addImport = async (
-  file: string,
-  importStatement: string[] | string,
-) => {
+export const addImport = (file: string, importStatement: string[] | string) => {
   fs.readFile(file, "utf8", (err, data) => {
     if (err) return errLog(err);
 
@@ -26,7 +23,7 @@ export const addImport = async (
   });
 };
 
-export const addTypeReference = async (
+export const addTypeReference = (
   file: string,
   reference: string | string[],
 ) => {
@@ -38,7 +35,7 @@ export const addTypeReference = async (
   fs.appendFileSync(file, formattedReference);
 };
 
-export const replaceFileText = async (
+export const replaceFileText = (
   file: string,
   oldImportStatement: string[] | string,
   newImportStatement: string[] | string,
@@ -58,7 +55,7 @@ export const replaceFileText = async (
   });
 };
 
-export const addVitePlugin = async (
+export const addVitePlugin = (
   viteConfigPath: string,
   importsFunctions: string[] | string,
   importsPlugin: string[] | string,
@@ -85,13 +82,13 @@ export const addVitePlugin = async (
   });
 };
 
-export const getTsConfig = async (): Promise<ITsConfig> => {
+export const getTsConfig = (): Promise<ITsConfig> => {
   const tsconfigJson = fs.readFileSync("tsconfig.json");
   const parsedTsconfig = JSON.parse(tsconfigJson.toString());
 
   return parsedTsconfig;
 };
 
-export const writeTsConfig = async (tsConfig: ITsConfig) => {
+export const writeTsConfig = (tsConfig: ITsConfig) => {
   fs.writeFileSync("tsconfig.json", JSON.stringify(tsConfig, null, 2));
 };

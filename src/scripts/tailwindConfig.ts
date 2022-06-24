@@ -18,7 +18,7 @@ export const tailwindConfig = async (
     downloadFile("tailwind/postcss.config.js"),
   ]);
 
-  addImport(`/src/main.${extension}`, `import "./styles/globals.css"`);
+  addImport(`./src/main.${extension}`, `import "./styles/globals.css"`);
 
   return {
     devDependencies: ["tailwindcss", "postcss", "autoprefixer"],
